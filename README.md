@@ -1,7 +1,25 @@
 # alt-rpc
 RPC script for AltV Multiplayer, which allows you to make async requests with response data.
 
-## Client → Server
+* [Installation](#installation)
+* [Examples](#examples)
+    * [Client → Server](#client--server)
+    * [Server → Client](#server--client)
+    * [Web → Client](#web--client)
+
+---
+
+## Installation
+Install with npm
+```
+npm i -S alt-rpc
+```
+
+---
+
+## Examples
+
+### Client → Server
 **Client**
 ```js
 import rpc from 'alt-rpc';
@@ -24,7 +42,7 @@ rpc.sRegister('testRequest', (player, data)=>{ //sRegister -> server register
 
 ---
 
-## Server → Client
+### Server → Client
 **Server**
 ```javascript
 import rpc from 'alt-rpc';
@@ -47,7 +65,7 @@ rpc.cRegister('testRequest', (data)=>{ //cRegister -> client register
 
 ---
 
-## Web → Client
+### Web → Client
 **Web**
 ```javascript
 import rpc from 'alt-rpc';
