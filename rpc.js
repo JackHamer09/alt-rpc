@@ -2,8 +2,8 @@ const returnFromEventName = name => name + '_return';
 const AsyncFunctionInstance = (async () => {}).constructor;
 const defaultTimeout = 30000;
 
-exports = {
-    cts: (key, data) => {
+export default {
+    cts: (alt, key, data) => {
         let promiseTimeout = false;
         return new Promise((resolve,reject)=>{
             alt.emitServer(key,data);
@@ -19,7 +19,7 @@ exports = {
             }, defaultTimeout);
         });
     },
-    stc: (player, key, data) => {
+    stc: (alt, player, key, data) => {
         let promiseTimeout = false;
         return new Promise((resolve,reject)=>{
             alt.emitClient(player,key,data);
@@ -51,7 +51,7 @@ exports = {
             }, defaultTimeout);
         });
     },
-    sRegister: (key, callback) => {
+    sRegister: (alt, key, callback) => {
         alt.onClient(key, async (player, data) => {
             if(callback instanceof AsyncFunctionInstance) {
                 data = await callback(player, data);
@@ -62,7 +62,7 @@ exports = {
             alt.emitClient(player, returnFromEventName(key), data);
         });
     },
-    cRegister: (key, callback) => {
+    cRegister: (alt, key, callback) => {
         alt.onServer(key, async (data) => {
             if(callback instanceof AsyncFunctionInstance) {
                 data = await callback(data);

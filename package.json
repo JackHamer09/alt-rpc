@@ -1,7 +1,7 @@
 {
   "name": "alt-rpc",
-  "version": "1.0.0",
-  "description": "RPC script for AltV Multiplayer, which allows you to make async requests with response data.",
+  "version": "1.0.2",
+  "description": "Lightweight RPC script for AltV Multiplayer, which allows you to make async requests with response data.",
   "main": "rpc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +16,6 @@
     "Request"
   ],
   "author": "JackHamer",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

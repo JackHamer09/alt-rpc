@@ -1,5 +1,5 @@
 # alt-rpc
-RPC script for AltV Multiplayer, which allows you to make async requests with response data.
+Lightweight RPC script for AltV Multiplayer, which allows you to make async requests with response data.
 
 * [Installation](#installation)
 * [Examples](#examples)
@@ -12,7 +12,7 @@ RPC script for AltV Multiplayer, which allows you to make async requests with re
 ## Installation
 Install with npm
 ```
-npm i -S alt-rpc
+npm i alt-rpc --save
 ```
 
 ---
@@ -24,7 +24,7 @@ npm i -S alt-rpc
 ```js
 import rpc from 'alt-rpc';
 
-rpc.cts('testRequest', 'foo') //cts -> client to server
+rpc.cts(alt, 'testRequest', 'foo') //cts -> client to server
 .then(data => {
     alt.log(data); //bar
 });
@@ -34,7 +34,7 @@ rpc.cts('testRequest', 'foo') //cts -> client to server
 ```js
 import rpc from 'alt-rpc';
 
-rpc.sRegister('testRequest', (player, data)=>{ //sRegister -> server register
+rpc.sRegister(alt, 'testRequest', (player, data)=>{ //sRegister -> server register
     alt.log(data); //foo
     return 'bar';
 });
@@ -47,7 +47,7 @@ rpc.sRegister('testRequest', (player, data)=>{ //sRegister -> server register
 ```javascript
 import rpc from 'alt-rpc';
 
-rpc.stc(player, 'testRequest', 'foo') //stc -> server to client
+rpc.stc(alt, player, 'testRequest', 'foo') //stc -> server to client
 .then(data => {
     alt.log(data); //bar
 });
@@ -57,7 +57,7 @@ rpc.stc(player, 'testRequest', 'foo') //stc -> server to client
 ```javascript
 import rpc from 'alt-rpc';
 
-rpc.cRegister('testRequest', (data)=>{ //cRegister -> client register
+rpc.cRegister(alt, 'testRequest', (data)=>{ //cRegister -> client register
     alt.log(data); //foo
     return 'bar';
 });
