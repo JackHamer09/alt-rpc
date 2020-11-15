@@ -1,13 +1,18 @@
 {
   "name": "alt-rpc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight RPC script for AltV Multiplayer, which allows you to make async requests with response data.",
-  "main": "rpc.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackHamer09/alt-rpc.git"
+  },
   "keywords": [
     "AltV",
+    "alt:V",
     "GTA",
     "5",
     "V",
@@ -17,5 +22,9 @@
   ],
   "author": "JackHamer",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackHamer09/alt-rpc/issues"
+  },
+  "homepage": "https://github.com/JackHamer09/alt-rpc#readme",
   "dependencies": {}
 }

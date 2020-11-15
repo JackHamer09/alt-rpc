@@ -3,9 +3,11 @@ Lightweight RPC script for AltV Multiplayer, which allows you to make async requ
 
 * [Installation](#installation)
 * [Examples](#examples)
-    * [Client → Server](#client--server)
-    * [Server → Client](#server--client)
-    * [Web → Client](#web--client)
+    * [Client to Server](#client-to-server)
+    * [Server to Client](#server-to-client)
+    * [Web to Client](#web-to-client)
+* [Changelog](#changelog)
+* [To Do](#to-do)
 
 ---
 
@@ -19,7 +21,7 @@ npm i alt-rpc --save
 
 ## Examples
 
-### Client → Server
+### Client to Server
 **Client**
 ```js
 import rpc from 'alt-rpc';
@@ -42,7 +44,7 @@ rpc.sRegister(alt, 'testRequest', (player, data)=>{ //sRegister -> server regist
 
 ---
 
-### Server → Client
+### Server to Client
 **Server**
 ```javascript
 import rpc from 'alt-rpc';
@@ -65,7 +67,7 @@ rpc.cRegister(alt, 'testRequest', (data)=>{ //cRegister -> client register
 
 ---
 
-### Web → Client
+### Web to Client
 **Web**
 ```javascript
 import rpc from 'alt-rpc';
@@ -85,3 +87,17 @@ rpc.wcRegister(webview, 'testRequest', (data)=>{ //wcRegister -> web-client regi
     return 'bar';
 });
 ```
+
+---
+
+## Changelog
+
+**1.0.3**
+* FIX: Import file ES6 syntax error
+* FIX: Events are unsubscribed from handlers after the execution has done
+
+---
+
+## To Do
+
+* Web to Server and Server to Web requests

@@ -5,48 +5,60 @@ const defaultTimeout = 30000;
 export default {
     cts: (alt, key, data) => {
         let promiseTimeout = false;
+        const eventName = returnFromEventName(key);
         return new Promise((resolve,reject)=>{
-            alt.emitServer(key,data);
-            alt.onServer(returnFromEventName(key), (data) => {
+            const callbackFunction = (dataFromServer) => {
                 if(promiseTimeout!==false) {
                     alt.clearTimeout(promiseTimeout);
                 }
                 promiseTimeout = undefined;
-                resolve(data);
-            });
+                alt.offServer(eventName, callbackFunction);
+                resolve(dataFromServer);
+            }
+            alt.emitServer(key,data);
+            alt.onServer(eventName, callbackFunction);
             promiseTimeout = alt.setTimeout(() => {
+                alt.offServer(eventName, callbackFunction);
                 reject(new Error('Request timed out'));
             }, defaultTimeout);
         });
     },
     stc: (alt, player, key, data) => {
         let promiseTimeout = false;
+        const eventName = returnFromEventName(key);
         return new Promise((resolve,reject)=>{
-            alt.emitClient(player,key,data);
-            alt.onClient(returnFromEventName(key), (player, data) => {
+            const callbackFunction = (clientPlayer, dataFromClient) => {
                 if(promiseTimeout!==false) {
                     clearTimeout(promiseTimeout);
                 }
                 promiseTimeout = undefined;
-                resolve(data);
-            });
+                alt.offClient(eventName, callbackFunction);
+                resolve(dataFromClient);
+            }
+            alt.emitClient(player,key,data);
+            alt.onClient(eventName, callbackFunction);
             promiseTimeout = setTimeout(() => {
+                alt.offClient(eventName, callbackFunction);
                 reject(new Error('Request timed out'));
             }, defaultTimeout);
         });
     },
     wtc: (altWeb, key, data) => {
         let promiseTimeout = false;
+        const eventName = returnFromEventName(key);
         return new Promise((resolve,reject)=>{
-            altWeb.emit(key,data);
-            altWeb.on(returnFromEventName(key), (data) => {
+            const callbackFunction = (dataFromClient) => {
                 if(promiseTimeout!==false) {
                     clearTimeout(promiseTimeout);
                 }
                 promiseTimeout = undefined;
-                resolve(data);
-            });
+                altWeb.off(eventName, callbackFunction);
+                resolve(dataFromClient);
+            }
+            altWeb.emit(key,data);
+            altWeb.on(returnFromEventName(key), callbackFunction);
             promiseTimeout = setTimeout(() => {
+                altWeb.off(eventName, callbackFunction);
                 reject(new Error('Request timed out'));
             }, defaultTimeout);
         });
